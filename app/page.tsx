@@ -22,8 +22,8 @@ export default function Page() {
           href="https://www.coinbase.com/"
           title="coinbase"
         >
-          <span className="text-default-600">Built in</span>
-          <p className="text-warning">Coinbase</p>
+          <span className="text-default-600">Backed by</span>
+          <p className="text-blue-500">IncuBase</p>
         </Link>
       </footer>
     </div>

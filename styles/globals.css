@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;424;432;460;560&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.font-bricolage {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
 
 @font-face {
   font-family: 'FilsonPro';
