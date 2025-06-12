@@ -2,24 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ClientTweetCard } from "@/components/tweet-card/tweet-card-client";
-import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import ButtonSoniclabsCustom from "@/components/button/buttonSonicCustom";
 
 export const SkeletonTwo = () => {
-  const images = [
-    "/images/nft1.jpg",
-    "/images/nft2.jpg",
-    "/images/nft3.jpg",
-    "/images/nft4.jpg",
-    "/images/nft5.jpg",
-    "/images/nft6.jpg",
-    "/images/nft7.jpg",
-    "/images/nft8.jpg",
-    "/images/nft9.jpg",
-    "/images/nft10.jpg",
-  ];
-
   // <TweetCard id="1441032681968212480" />
   const tweet = ["1931695768223760632", "1922488976973148593"];
 
@@ -36,10 +22,12 @@ export const SkeletonTwo = () => {
     return () => clearInterval(interval);
   }, [tweet.length]);
   return (
-    <div className="relative flex flex-col items-center p-8 gap-10 h-full overflow-hidden">
+    <div className="relative flex flex-col items-center h-full overflow-hidden">
+
+      
       <div className="w-full">
         <div className="w-full min-h-[500px] h-auto flex items-center justify-center">
-          <div className="w-full max-w-[400px] min-w-[400px] relative h-full min-h-[500px]">
+          <div className="w-full min-w-[400px] relative h-full min-h-[500px]">
             {tweet.map((tweetId, index) => (
               <motion.div
                 key={tweetId}
@@ -71,49 +59,8 @@ export const SkeletonTwo = () => {
   );
 };
 
-const ButtonSoniclabsCustom = ({
-  delay = 0.1,
-  buttonBaseStyles,
-  onClick,
-  children,
-}: {
-  delay?: number;
-  buttonBaseStyles?: string;
-  onClick?: () => void;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <motion.button
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay }}
-      className="relative p-[1px] bg-gradient-sonic-mirrored rounded-full animate-gradient cursor-pointer z-20 transform"
-      tabIndex={0}
-      style={{
-        willChange: "transform, filter",
-        filter: "brightness(1)",
-        transform: "none",
-      }}
-      onClick={onClick}
-    >
-      <div className="absolute inset-0 bg-gradient-sonic-mirrored animate-gradient rounded-full blur-sm group-hover:blur group-hover:brightness-125 transition"></div>
-      <div className="relative z-10 bg-black/75 rounded-full flex items-center overflow-hidden opacity-100">
-        <div className="px-3 py-1.5 flex items-center gap-x-2.5 opacity-100">
-          <span
-            className={cn(
-              "text-sm font-regular flex items-center",
-              buttonBaseStyles
-            )}
-          >
-            {children}
-          </span>
-        </div>
-      </div>
-    </motion.button>
-  );
-};
 
-export default function Page() {
+export default function HomeContent() {
   const router = useRouter();
 
   return (
@@ -139,14 +86,14 @@ export default function Page() {
           </p>
           <div className="flex space-x-4">
             <div>
-              <ButtonSoniclabsCustom onClick={() => router.push("/app")}>
+              <ButtonSoniclabsCustom onClick={() => router.push("/apps")}>
                 Start Investing
               </ButtonSoniclabsCustom>
             </div>
           </div>
         </section>
 
-        <section className="w-full md:w-1/2 right flex justify-</section>center h-full items-center">
+        <section className="w-full md:w-1/2 right flex justify-center h-full items-center">
           <SkeletonTwo />
         </section>
       </div>
