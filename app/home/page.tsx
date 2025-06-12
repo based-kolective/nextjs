@@ -37,12 +37,34 @@ export const SkeletonTwo = () => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(interval);
-  }, [tweet.length]);
-  
-  return (
-    <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
+  }, [tweet.length]);  return (
+    <div className="relative flex flex-col items-center p-8 gap-10 h-full overflow-hidden">
       <div className="w-full">
-          <ClientTweetCard id={tweet[currentTweetIndex]} className="border-neutral-700 !w-full" />
+          <div className="w-full min-h-[500px] h-auto flex items-center justify-center">
+            <div className="w-full max-w-[400px] min-w-[400px] relative h-full min-h-[500px]">
+              {tweet.map((tweetId, index) => (
+                <motion.div
+                  key={tweetId}
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: index === currentTweetIndex ? 1 : 0,
+                    scale: index === currentTweetIndex ? 1 : 0.95
+                  }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="absolute top-0 left-0 pt-14 w-full h-auto"
+                  style={{ 
+                    pointerEvents: index === currentTweetIndex ? 'auto' : 'none',
+                    zIndex: index === currentTweetIndex ? 1 : 0
+                  }}
+                >
+                  <ClientTweetCard 
+                    id={tweetId} 
+                    className="border-neutral-700 !w-full !max-w-none !min-w-full" 
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
       </div>
 
       <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
@@ -55,7 +77,7 @@ export const SkeletonTwo = () => {
 export default function Page() {
   return (
     <section id="home" className="flex flex-col w-full h-full mt-40">
-      <div className="flex w-full flex-row justify-around z-10">
+      <div className="flex w-full flex-col md:flex-row justify-around z-10">
 
         <section className="w-full md:w-1/2 mt-20">
           <h1 className="font-bricolage font-bold text-8xl text-white mb-2">
