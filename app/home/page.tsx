@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ClientTweetCard } from "@/components/tweet-card/tweet-card-client";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const SkeletonTwo = () => {
   const images = [
@@ -20,7 +21,7 @@ export const SkeletonTwo = () => {
   ];
 
   // <TweetCard id="1441032681968212480" />
-  const tweet = ["1931695768223760632", "1927036419396030691"];
+  const tweet = ["1931695768223760632", "1922488976973148593"];
 
   // State to track current tweet index
   const [currentTweetIndex, setCurrentTweetIndex] = useState(0);
@@ -119,6 +120,11 @@ export default function Page() {
     <section id="home" className="flex flex-col w-full h-full mt-40">
       <div className="flex w-full flex-col md:flex-row justify-around z-10">
         <section className="w-full md:w-1/2 mt-20">
+          {/* <Link className="inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground h-8 px-3 text-xs rounded-full"
+            href="https://incubase.xyz/"
+            target="_blank">
+            Part of <span className="text-blue-500 pl-1">IncuBase</span>
+          </Link> */}
           <h1 className="font-bricolage font-bold text-8xl text-white mb-2">
             Kolective
           </h1>
@@ -133,9 +139,9 @@ export default function Page() {
           </p>
           <div className="flex space-x-4">
             <div>
-              <ButtonSoniclabsCustom
-              onClick={()=> router.push("/app")}
-              >Start Investing</ButtonSoniclabsCustom>
+              <ButtonSoniclabsCustom onClick={() => router.push("/app")}>
+                Start Investing
+              </ButtonSoniclabsCustom>
             </div>
           </div>
         </section>
