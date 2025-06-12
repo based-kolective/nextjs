@@ -39,8 +39,8 @@ export const SkeletonTwo = () => {
   };
   return (
     <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      <div className="flex flex-row -ml-8 -mr-10">
-        <ClientTweetCard id="1931695768223760632" className="border-white" />
+      <div className="flex flex-row -ml-4 -mr-4">
+        <ClientTweetCard id="1931695768223760632" className="border-neutral-700" />
         {/* {tweet.slice(0, 1).map((tw, idx) => (
           <motion.div
             variants={imageVariants}
@@ -56,7 +56,7 @@ export const SkeletonTwo = () => {
           </motion.div>
         ))} */}
       </div>
-      <div className="flex flex-row">
+      {/* <div className="flex flex-row">
         {images.slice(5, 10).map((image, idx) => (
           <motion.div
             key={"images-second" + idx}
@@ -77,7 +77,7 @@ export const SkeletonTwo = () => {
             />
           </motion.div>
         ))}
-      </div>
+      </div> */}
 
       <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
       <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
