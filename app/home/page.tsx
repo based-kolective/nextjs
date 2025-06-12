@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { TweetCard } from "@/components/tweet-card/tweet-card";
@@ -22,62 +22,28 @@ export const SkeletonTwo = () => {
 
   // <TweetCard id="1441032681968212480" />
   const tweet = [
-    "1931695768223760632"
+    "1931695768223760632",
+    "1927036419396030691"
   ];
 
-  const imageVariants = {
-    whileHover: {
-      scale: 1.1,
-      rotate: 0,
-      zIndex: 100,
-    },
-    whileTap: {
-      scale: 1.1,
-      rotate: 0,
-      zIndex: 100,
-    },
-  };
+  // State to track current tweet index
+  const [currentTweetIndex, setCurrentTweetIndex] = useState(0);
+
+  // Auto-rotate tweets every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTweetIndex((prevIndex) => (prevIndex + 1) % tweet.length);
+    }, 3000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [tweet.length]);
+  
   return (
     <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
-      <div className="flex flex-row -ml-4 -mr-4">
-        <ClientTweetCard id="1931695768223760632" className="border-neutral-700" />
-        {/* {tweet.slice(0, 1).map((tw, idx) => (
-          <motion.div
-            variants={imageVariants}
-            key={"images-first" + idx}
-            style={{
-              rotate: Math.random() * 20 - 10,
-            }}
-            whileHover="whileHover"
-            whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
-          >
-            <TweetCard id={tw} />
-          </motion.div>
-        ))} */}
+      <div className="w-full">
+          <ClientTweetCard id={tweet[currentTweetIndex]} className="border-neutral-700 !w-full" />
       </div>
-      {/* <div className="flex flex-row">
-        {images.slice(5, 10).map((image, idx) => (
-          <motion.div
-            key={"images-second" + idx}
-            style={{
-              rotate: Math.random() * 20 - 10,
-            }}
-            variants={imageVariants}
-            whileHover="whileHover"
-            whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
-          >
-            <Image
-              src={image}
-              alt="bali images"
-              width="500"
-              height="500"
-              className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
-            />
-          </motion.div>
-        ))}
-      </div> */}
 
       <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none" />
       <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none" />
@@ -89,8 +55,9 @@ export const SkeletonTwo = () => {
 export default function Page() {
   return (
     <section id="home" className="flex flex-col w-full h-full mt-40">
-      <div className="flex justify-around z-10">
-        <section className="max-w-lg mt-20">
+      <div className="flex w-full flex-row justify-around z-10">
+
+        <section className="w-full md:w-1/2 mt-20">
           <h1 className="font-bricolage font-bold text-8xl text-white mb-2">
             Kolective
           </h1>
@@ -98,10 +65,7 @@ export default function Page() {
             Invest With Confidence
           </h2>
           <p className="subheading max-w-2xl mb-12 text-gray-300">
-            Kolective connects you with strategies trusted by experienced
-            traders and industry leaders. Powered by AI and supported by real
-            insights, you can protect your assets, automate trades, and adjust
-            your risk level—all in one place.
+ Automate your trades based on strategies from your favorite Key Opinion Leaders (KOLs). Connect your wallet, choose the experts you trust, and let Kolective handle the rest—so you can stay informed and in control, without the stress of constant monitoring.
           </p>
           <div className="flex space-x-4">
             <button className="bg-white text-black px-6 py-3 rounded-md btn-text hover:bg-gray-200 transition-colors">
@@ -109,7 +73,8 @@ export default function Page() {
             </button>
           </div>
         </section>
-        <section className="max-w-lg right">
+
+        <section className="w-full md:w-1/2 right flex justify-center h-full items-center">
           <SkeletonTwo />
         </section>
       </div>
