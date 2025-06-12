@@ -2,8 +2,8 @@ import "@/styles/globals.css";
 
 import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
-// import DefaultLayout from '@/components/layout/default';
-import LandingPageLayout from "@/components/layout/landingpagelayout";
+import DefaultLayout from '@/components/layout/default';
+// import LandingPageLayout from "@/components/layout/landingpagelayout";
 
 export const metadata: Metadata = {
   title: {
@@ -28,9 +28,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+    console.log("RootLayout rendered");
+
   return (
-    <LandingPageLayout>
+    <DefaultLayout>
       {children}
-    </LandingPageLayout>
+    </DefaultLayout>
   );
 }
