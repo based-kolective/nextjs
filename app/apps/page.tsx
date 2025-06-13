@@ -5,12 +5,10 @@ const Feeds = dynamic(() => import("./_components/Feeds"), {
   ssr: false,
 });
 
-export const Apps = () => {
+export default function Apps() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center text-white">
       <Feeds />
     </div>
   );
-};
-
-export default Apps;
+}
