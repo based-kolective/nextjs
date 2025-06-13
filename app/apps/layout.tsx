@@ -2,8 +2,7 @@ import "@/styles/globals.css";
 
 import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
-import DefaultLayout from '@/components/layout/default';
-// import LandingPageLayout from "@/components/layout/landingpagelayout";
+import AppsLayout from "@/components/layout/AppsLayout";
 
 export const metadata: Metadata = {
   title: {
@@ -31,8 +30,8 @@ export default function RootLayout({
     console.log("RootLayout rendered");
 
   return (
-    <DefaultLayout>
+    <AppsLayout>
       {children}
-    </DefaultLayout>
+    </AppsLayout>
   );
 }

@@ -21,12 +21,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import ButtonSoniclabsCustom from "./button/buttonSonicCustom";
 
-
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-
 
   return (
     <HeroUINavbar
@@ -42,20 +40,57 @@ export default function Navbar() {
         justify="start"
       >
         <Link href="/home" title="Home">
-    Kolective
+          <Image
+            src="/images/kolective.svg"
+            alt="Kolective"
+            width={120}
+            height={32}
+            className="h-8 w-auto"
+          />
         </Link>
-
       </NavbarContent>
 
+      {/* Desktop */}
       <NavbarContent
         className="hidden xl:flex basis-1/5 xl:basis-full items-center mb-3 pt-3"
         justify="end"
       >
         <NavbarItem className="hidden xl:flex items-center gap-4">
-          <ButtonSoniclabsCustom onClick={() => router.push("/apps")}>
-            Apps
-          </ButtonSoniclabsCustom>
+          <Link href="/apps">
+            <div
+              className="flex items-center gap-2 text-sm font-medium text-foreground bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition-colors
+          "
+            >
+              Apps
+            </div>
+          </Link>
         </NavbarItem>
+      </NavbarContent>
+
+      {/* Mobile Menu*/}
+      <NavbarContent className="xl:hidden basis-1 pl-4">
+        <div className="flex justify-between items-center w-full">
+          <Link href="/home" title="Home">
+            <Image
+              src="/images/kolective.svg"
+              alt="Kolective"
+              width={120}
+              height={32}
+              className="h-8 w-auto"
+            />
+          </Link>
+
+          <div className="flex flex-row gap-3 items-center">
+            <Link href="/apps">
+              <div
+                className="flex items-center gap-2 text-sm font-medium text-foreground bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition-colors
+          "
+              >
+                Apps
+              </div>
+            </Link>
+          </div>
+        </div>
       </NavbarContent>
 
       <NavbarMenu className="z-[1000] absolute inset-0 full-height bg-background/50">
