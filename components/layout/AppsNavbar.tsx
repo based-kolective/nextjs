@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Navbar, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@heroui/navbar";
 import clsx from "clsx";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { WalletComponents } from "./../wallet";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -12,8 +11,8 @@ import Image from "next/image";
 const navItems = [
   {
     href: "/apps",
-    label: "HOME"
-  }
+    label: "DISCOVER"
+  },
 ];
 
 export default function AppsNavbar() {
@@ -40,7 +39,7 @@ export default function AppsNavbar() {
           />
         </Link>
         <div className="relative flex items-center w-fit">
-          <div className="realtive flex p-1">
+          <div className="realtive flex ps-4 gap-4 items-center">
             {navItems.map((item) => (
               <NavbarItem
                 key={item.href}
@@ -48,18 +47,11 @@ export default function AppsNavbar() {
               >
                 <Link
                   className={clsx(
-                    "text-sm font-normal px-4 py-2 rounded-none",
-                    pathname.startsWith(item.href) ? "text-foreground" : "text-gray-400"
+                    "text-sm font-normal px-4 py-2 hover:bg-slate-700/20 transition-colors rounded-md",
+                    pathname.startsWith(item.href) ? "text-blue-500" : "text-gray-400"
                   )}
                   href={item.href}
                 >
-                  {pathname.startsWith(item.href) && (
-                    <motion.span
-                      layoutId="bubble"
-                      className="absolute inset-0 z-10 border-b-2 border-warning -mb-1 mix-blend-difference rounded-none"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
                   <span className="z-10">{item.label}</span>
                 </Link>
               </NavbarItem>

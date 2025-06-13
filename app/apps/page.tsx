@@ -1,10 +1,16 @@
+'use client';
+import dynamic from "next/dynamic";
+
+const Feeds = dynamic(() => import("./_components/Feeds"), {
+  ssr: false,
+});
+
 export const Apps = () => {
-    return (
-        <div className="flex flex-col flex-1 items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Apps Page</h1>
-        <p className="text-lg">This is the Apps page content.</p>
-        </div>
-    );
+  return (
+    <div className="flex flex-col flex-1 items-center justify-center text-white">
+      <Feeds />
+    </div>
+  );
 };
 
 export default Apps;
