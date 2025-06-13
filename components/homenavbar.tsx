@@ -9,22 +9,15 @@ import {
   NavbarMenuItem,
 } from "@heroui/navbar";
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { GithubIcon } from "@/components/icons";
-import { BookText } from "lucide-react";
 import clsx from "clsx";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { WalletComponents } from "./wallet";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import ButtonSoniclabsCustom from "./button/buttonSonicCustom";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <HeroUINavbar

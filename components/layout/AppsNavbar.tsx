@@ -24,7 +24,7 @@ export default function AppsNavbar() {
     <Navbar
       maxWidth="full"
       position="static"
-      className="rounded-full backdrop-saturate-100 z-[100]"
+      className="backdrop-saturate-100 z-[100] px-12"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       style={{ backgroundColor: "rgba(255, 255, 255, 0.03)" }}
