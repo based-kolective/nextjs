@@ -27,8 +27,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-    console.log("RootLayout rendered");
-
   return (
     <AppsLayout>
       {children}
