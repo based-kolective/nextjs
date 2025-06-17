@@ -428,7 +428,8 @@ export const Feeds = () => {
                               )}
                             </div>
                             <p className="text-gray-200 mb-3 whitespace-pre-wrap leading-relaxed text-sm font-bricolage">
-                              {tweet.text}
+                              {/* This will render the tweet text with links and cashtags */}
+                              <LinkifiedText text={tweet.text} />
                             </p>
 
                             {/* Tweet Actions */}
