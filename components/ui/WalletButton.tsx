@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useWallet, useAuth, useWalletLogin, useUser } from "../../providers/AccountProvider";
+import { useWallet, useAuth, useWalletLogin, useUser, useAccountContext } from "../../providers/AccountProvider";
 
 interface WalletButtonProps {
   size?: 'sm' | 'md' | 'lg';
@@ -20,8 +20,12 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
   const { isAuthenticated, isLoading } = useAuth();
   const { login } = useWalletLogin();
   const user = useUser();
+  const acc = useAccountContext();
 
-  console.log(`user`, user);
+  if(isConnected && !isAuthenticated){
+    console.log(`do this`);
+    console.log(acc);
+  }
 
   const handleClick = async () => {
     if (isConnected && !isAuthenticated) {
@@ -30,6 +34,12 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
       } catch (error) {
         console.error('Login failed:', error);
       }
+    }
+
+    if(isConnected && isAuthenticated) {
+      console.log('Wallet is already connected and authenticated');
+      console.log(`User: ${user?.name || 'Unknown'}, Address: ${address}`);
+      console.log(user)
     }
   };
 

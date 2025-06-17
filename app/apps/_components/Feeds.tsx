@@ -336,7 +336,7 @@ export const Feeds = () => {
           </div>
           {/* Main Feed Panel */}
           <div className="col-span-9">
-            <div className="bg-[#1a1a1a] border border-gray-800/50 rounded-lg overflow-hidden h-full">
+            <div className="bg-[#1a1a1a] border border-gray-800/50 rounded-lg overflow-hidden h-full max-h-[70vh] ">
               {/* Feed Header */}
               <div className="border-b border-gray-800/50 px-4 py-3">
                 <div className="flex items-center justify-between">
@@ -351,7 +351,7 @@ export const Feeds = () => {
               </div>
 
               {/* Feed Content */}
-              <div className="h-[calc(100%-60px)] overflow-y-auto">
+              <div className="h-[calc(100%-60px)] overflow-y-scroll">
                 {filteredTweets.length === 0 ? (
                   <div className="flex items-center justify-center h-full">
                     <div className="text-center text-gray-400">
