@@ -72,7 +72,6 @@ function accountReducer(
   state: AccountState,
   action: AccountAction
 ): AccountState {
-  console.log(`dispatching action:`, action.type);
   switch (action.type) {
     case "LOGIN_START":
       return {
