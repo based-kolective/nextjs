@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Cookies from "js-cookie";
 import { UserFilterButton } from "./UserFilterButton";
 import { FilterModal } from "./FilterModal";
+import { LinkifiedText } from "@/utils/linkify";
 
 interface Tweet {
   id: string;
@@ -294,7 +295,9 @@ export const Feeds = () => {
                             </span>
                           )}
                         </div>
-                        <p className="text-gray-200 mb-4 whitespace-pre-wrap leading-relaxed text-sm font-bricolage">{tweet.text}</p>
+                        <p className="text-gray-200 mb-4 whitespace-pre-wrap leading-relaxed text-sm font-bricolage">
+                          <LinkifiedText text={tweet.text} />
+                        </p>
                           {/* Tweet Statistics */}
                         <div className="flex items-center space-x-6 text-gray-400 text-xs mb-4">
                           <div className="flex items-center space-x-1 hover:text-blue-400 transition-colors cursor-pointer group">
@@ -324,7 +327,8 @@ export const Feeds = () => {
                               <span className="font-bricolage text-xs">{tweet.views.toLocaleString()}</span>
                             </div>
                           )}
-                        </div>                        {/* Hashtags */}
+                        </div>
+                        {/* Hashtags */}
                         {tweet.hashtags.length > 0 && (
                           <div className="mb-3 flex flex-wrap gap-1">
                             {tweet.hashtags.map((hashtag, index) => (
