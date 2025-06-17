@@ -246,7 +246,11 @@ export const Feeds = () => {
                 <h3 className="text-white font-bricolage font-semibold text-sm mb-3">
                   Active Filters
                 </h3>
-                <div className="space-y-2">
+                <div
+                  className={`space-y-2 ${
+                    selectedUsers.length > 10 ? "max-h-64 overflow-y-auto pr-2" : ""
+                  }`}
+                >
                   {selectedUsers.map((username) => {
                     const user = tweets.find((t) => t.username === username);
                     return user ? (
