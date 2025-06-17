@@ -7,6 +7,7 @@ import { useState } from "react";
 import { WalletComponents } from "./../wallet";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { WalletButton } from "../ui/WalletButton";
 
 const navItems = [
   {
@@ -64,6 +65,7 @@ export default function AppsNavbar() {
       <NavbarContent className="hidden xl:flex basis-1/5 xl:basis-full items-center mb-3 pt-3" justify="end">
         <NavbarItem className="hidden xl:flex items-center gap-4">
           <WalletComponents />
+          <WalletButton />
         </NavbarItem>
       </NavbarContent>
 
@@ -74,6 +76,7 @@ export default function AppsNavbar() {
 
           <div className="flex flex-row gap-3 items-center">
             <WalletComponents />
+            <WalletButton />
           </div>
         </div>
       </NavbarContent>
