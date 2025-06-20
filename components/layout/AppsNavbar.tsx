@@ -65,7 +65,7 @@ export default function AppsNavbar() {
       <NavbarContent className="hidden xl:flex basis-1/5 xl:basis-full items-center mb-3 pt-3" justify="end">
         <NavbarItem className="hidden xl:flex items-center gap-4">
           <WalletComponents />
-          <WalletButton />
+          <WalletButton variant="none" />
         </NavbarItem>
       </NavbarContent>
 
@@ -76,7 +76,7 @@ export default function AppsNavbar() {
 
           <div className="flex flex-row gap-3 items-center">
             <WalletComponents />
-            <WalletButton />
+            <WalletButton variant="none"/>
           </div>
         </div>
       </NavbarContent>

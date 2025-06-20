@@ -175,8 +175,8 @@ function accountReducer(
       };
     case "SET_LOADING":
       return {
-        type: action.type,
         ...state,
+        type: action.type,
         isLoading: action.payload,
       };
     default:

@@ -53,9 +53,10 @@ export default function AppsLayout({
   );
 }
 
-// Wrapper component to access AccountProvider context
+// Import hooks from AccountProvider
+import { useAccountContext, useWallet } from "../../providers/AccountProvider";
+
 function RegistrationModalWrapper() {
-  const { useAccountContext, useWallet } = require("../../providers/AccountProvider");
   const { state, hideRegistrationModal, createAccount } = useAccountContext();
   const { address } = useWallet();
 

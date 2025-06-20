@@ -11,7 +11,7 @@ import {
 
 interface WalletButtonProps {
   size?: "sm" | "md" | "lg";
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "none";
   showAddress?: boolean;
   className?: string;
 }
@@ -22,22 +22,40 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
   showAddress = true,
   className = "",
 }) => {
+  const { showRegistrationModal } = useAccountContext();
   const { address, isConnected } = useWallet();
   const { isAuthenticated, isLoading } = useAuth();
   const { login } = useWalletLogin();
   const user = useUser();
   const acc = useAccountContext();
 
-  if(acc.state.type === "SET_REGISTRATION_STATUS" && isConnected) {
-    console.log(acc)
+  if (acc.state.type === "SET_REGISTRATION_STATUS" && isConnected) {
+    // console.log(`do this`);
+    // console.log(acc);
   }
 
   const handleClick = async () => {
+    console.log("WalletButton clicked");
+    console.log(acc);
     if (isConnected && !isAuthenticated) {
-      try {
-        await login();
-      } catch (error) {
-        console.error("Login failed:", error);
+      // handle login
+      if (
+        acc.state.isRegistered &&
+        acc.state.type === "SET_REGISTRATION_STATUS"
+      ) {
+        try {
+          await login();
+        } catch (error) {
+          console.error("Login failed:", error);
+        }
+      }
+      if (!acc.state.isRegistered) {
+        try {
+          showRegistrationModal(true);
+          console.log("Opening registration modal");
+        } catch (error) {
+          console.error("Account creation failed:", error);
+        }
       }
     }
 
@@ -69,6 +87,8 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
         return "bg-gray-800/50 border border-gray-600/50 text-white hover:bg-gray-700/50 hover:border-gray-500/50";
       case "outline":
         return "border border-gray-600/50 text-gray-300 hover:text-white hover:border-gray-500/50 bg-transparent";
+      case "none":
+        return "bg-transparent text-gray-300 hover:text-white";
       default:
         return "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white";
     }
@@ -153,8 +173,13 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
       return "Connected";
     }
 
-    if (isConnected && !isAuthenticated) {
-      return "Sign In";
+    if (
+      isConnected &&
+      !isAuthenticated &&
+      acc.state.type === "SET_REGISTRATION_STATUS" &&
+      !acc.state.isRegistered
+    ) {
+      return "Create Account";
     }
 
     return "Connect Wallet";
@@ -198,11 +223,7 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
         />
       )}
 
-      <div className="relative flex items-center space-x-2">
-        {renderIcon()}
-        <span>{getButtonText()}</span>
-        {getStatusDot()}
-      </div>
+      <div className="relative flex items-center space-x-2">{renderIcon()}</div>
     </motion.button>
   );
 };
