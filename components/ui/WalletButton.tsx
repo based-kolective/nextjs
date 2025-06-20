@@ -19,7 +19,6 @@ interface WalletButtonProps {
 export const WalletButton: React.FC<WalletButtonProps> = ({
   size = "md",
   variant = "primary",
-  showAddress = true,
   className = "",
 }) => {
   const { showRegistrationModal } = useAccountContext();
@@ -28,11 +27,6 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
   const { login } = useWalletLogin();
   const user = useUser();
   const acc = useAccountContext();
-
-  if (acc.state.type === "SET_REGISTRATION_STATUS" && isConnected) {
-    // console.log(`do this`);
-    // console.log(acc);
-  }
 
   const handleClick = async () => {
     console.log("WalletButton clicked");
@@ -51,7 +45,7 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
       }
       if (!acc.state.isRegistered) {
         try {
-          showRegistrationModal(true);
+          showRegistrationModal();
           console.log("Opening registration modal");
         } catch (error) {
           console.error("Account creation failed:", error);
@@ -61,8 +55,6 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
 
     if (isConnected && isAuthenticated) {
       console.log("Wallet is already connected and authenticated");
-      console.log(`User: ${user?.name || "Unknown"}, Address: ${address}`);
-      console.log(user);
     }
   };
 
@@ -126,24 +118,6 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
       );
     }
 
-    if (isConnected && isAuthenticated) {
-      return (
-        <svg
-          className={`${getIconSize()} text-green-400`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      );
-    }
-
     return (
       <svg
         className={`${getIconSize()}`}
@@ -161,48 +135,10 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
     );
   };
 
-  const getButtonText = () => {
-    if (isLoading) {
-      return "Connecting...";
-    }
-
-    if (isConnected && isAuthenticated) {
-      if (showAddress && address) {
-        return `${address.slice(0, 6)}...${address.slice(-4)}`;
-      }
-      return "Connected";
-    }
-
-    if (
-      isConnected &&
-      !isAuthenticated &&
-      acc.state.type === "SET_REGISTRATION_STATUS" &&
-      !acc.state.isRegistered
-    ) {
-      return "Create Account";
-    }
-
-    return "Connect Wallet";
-  };
-
-  const getStatusDot = () => {
-    if (!isConnected) return null;
-
-    const dotColor = isAuthenticated ? "bg-green-400" : "bg-yellow-400";
-
-    return (
-      <motion.div
-        className={`w-2 h-2 rounded-full ${dotColor}`}
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-    );
-  };
-
   return (
     <motion.button
       onClick={handleClick}
-      disabled={isLoading || (isConnected && isAuthenticated)}
+      disabled={isLoading}
       whileHover={!isLoading ? { scale: 1.02 } : {}}
       whileTap={!isLoading ? { scale: 0.98 } : {}}
       className={`

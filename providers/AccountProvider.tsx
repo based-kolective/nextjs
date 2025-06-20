@@ -380,6 +380,8 @@ export function AccountProvider({ children }: AccountProviderProps) {
         timestamp: new Date().toISOString(),
       });
 
+      console.log(data);
+
       dispatch({
         type: "SET_REGISTRATION_STATUS",
         payload: data.isRegistered,
