@@ -136,7 +136,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               
               {!isRegistering && !error && (
                 <p className="text-gray-400 font-bricolage text-sm">
-                  Create your account to get started with Kolective's features.
+                  Create your account to get started with Kolective&apos;s features.
                 </p>
               )}
 

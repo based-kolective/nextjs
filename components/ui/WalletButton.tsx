@@ -5,7 +5,6 @@ import {
   useWallet,
   useAuth,
   useWalletLogin,
-  useUser,
   useAccountContext,
 } from "../../providers/AccountProvider";
 
@@ -22,10 +21,10 @@ export const WalletButton: React.FC<WalletButtonProps> = ({
   className = "",
 }) => {
   const { showRegistrationModal } = useAccountContext();
-  const { address, isConnected } = useWallet();
+  const { isConnected } = useWallet();
   const { isAuthenticated, isLoading } = useAuth();
   const { login } = useWalletLogin();
-  const user = useUser();
+  // const user = useUser();
   const acc = useAccountContext();
 
   const handleClick = async () => {

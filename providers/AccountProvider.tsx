@@ -1,4 +1,3 @@
-import { s } from "framer-motion/dist/types.d-6pKw1mTI";
 import React, {
   createContext,
   useContext,
@@ -42,7 +41,7 @@ type AccountAction =
   | { type: "SHOW_REGISTRATION_MODAL" }
   | { type: "HIDE_REGISTRATION_MODAL" }
   | { type: "REGISTRATION_START" }
-  | { type: "REGISTRATION_SUCCESS"; payload: any }
+  | { type: "REGISTRATION_SUCCESS"; payload: AccountState }
   | { type: "REGISTRATION_FAILURE"; payload: string };
 
 interface AccountContextType {
@@ -654,7 +653,7 @@ export function useAuth(): { isAuthenticated: boolean; isLoading: boolean } {
 export function useWallet(): {
   address: string | undefined;
   isConnected: boolean;
-  connector: any;
+  connector: unknown;
 } {
   const { address, isConnected, connector } = useAccount();
   return { address, isConnected, connector };
